@@ -21,6 +21,8 @@ plugins {
   id("nessie-ui-conventions")
 }
 
+description = "Nessie Web UI"
+
 val syncResources = tasks.register<Sync>("syncWebResources") {
   from("../build")
   into("build/resources/main/META-INF/resources")
