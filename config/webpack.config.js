@@ -768,15 +768,17 @@ module.exports = function (webpackEnv) {
     chunkFilename: "static/css/[name].[contenthash:8].chunk.css",
   });
 
-  const profilePlugins = isEnvDevelopment || (process.env.PROFILE_PLUGINS !== "false");
+  const profilePlugins = isEnvDevelopment || (process.env.PROFILE_PLUGINS === "true");
   if (!profilePlugins) {
     config.plugins.push(miniCssExtractPlugin)
     return config;
   }
 
-  const SpeedMeasurePlugin = require("speed-measure-webpack-plugin");
-  const smp = new SpeedMeasurePlugin();
-  const wrappedConfig = smp.wrap(config);
-  wrappedConfig.plugins.push(miniCssExtractPlugin);
-  return wrappedConfig;
+  return config;
+  // TODO do we need this? why did that work before?
+  // const SpeedMeasurePlugin = require("speed-measure-webpack-plugin");
+  // const smp = new SpeedMeasurePlugin();
+  // const wrappedConfig = smp.wrap(config);
+  // wrappedConfig.plugins.push(miniCssExtractPlugin);
+  // return wrappedConfig;
 };
