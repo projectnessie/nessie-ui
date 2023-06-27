@@ -84,7 +84,27 @@ jobs:
       uses: ./.github/actions/dev-tool-java
       with:
         gpg-private-key: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }}
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18.x
     ### END runner setup
+
+    - name: NPM Install
+      run: npm install
+    - name: NPM Generate API
+      run: npm run generate-api
+    - name: NPM fix API
+      run: npm run fix-generated-client
+    - name: NPM build
+      env:
+        GENERATE_SOURCEMAP: false
+        DISABLE_ESLINT_PLUGIN: false
+        DISABLE_TERSER_PLUGIN: false
+        PROFILE_PLUGINS: false
+      run: npm run build
+    - name: Generate UI jar
+      run: ./gradlew jar
 
     # Deploys Maven artifacts. Build and test steps were already ran in previous steps.
     # Not running tests, because the environment contains secrets.
