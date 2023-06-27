@@ -1,0 +1,40 @@
+name: 'Setup Java/Gradle'
+description: 'Sets up Java + Gradle'
+inputs:
+  java-version:
+    required: false
+    default: '11'
+    description: 'Java version, defaults to 11'
+  gpg-private-key:
+    required: false
+    default: ''
+    description: 'gpg key, needed when publishing to sonatype'
+runs:
+  using: "composite"
+  steps:
+    - name: Set up JDK ${{ inputs.java-version }}
+      uses: actions/setup-java@v3
+      with:
+        distribution: 'temurin'
+        java-version: ${{ inputs.java-version }}
+        server-id: ossrh
+        server-username: MAVEN_USERNAME
+        server-password: MAVEN_OSSRH_TOKEN
+        gpg-private-key: ${{ inputs.gpg-private-key }}
+        gpg-passphrase: MAVEN_GPG_PASSPHRASE
+    - name: Setup gradle.properties
+      shell: bash
+      run: |
+        mkdir -p ~/.gradle/init.d
+        cat > ~/.gradle/init.d/cache-settings.gradle.kts <<!
+        beforeSettings {
+          caches {
+            releasedWrappers.setRemoveUnusedEntriesAfterDays(2)
+            snapshotWrappers.setRemoveUnusedEntriesAfterDays(1)
+            downloadedResources.setRemoveUnusedEntriesAfterDays(5)
+            createdResources.setRemoveUnusedEntriesAfterDays(2)
+          }
+        }
+        !
+        echo "org.gradle.jvmargs=-Xmx1280m -XX:MaxMetaspaceSize=768m -Dfile.encoding=UTF-8" >> ~/.gradle/gradle.properties
+        echo "org.gradle.vfs.watch=false" >> ~/.gradle/gradle.properties

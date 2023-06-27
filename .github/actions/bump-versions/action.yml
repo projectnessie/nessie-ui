@@ -1,0 +1,16 @@
+name: 'Bump versions'
+description: 'Updates versions for Python, UI, helm + site'
+inputs:
+  new-version:
+    required: true
+    description: 'Version to bump to'
+runs:
+  using: "composite"
+  steps:
+    - name: Bump UI release version ${{ inputs.new-version }}
+      shell: bash
+      env:
+        NEW_VERSION: ${{ inputs.new-version }}
+      run: |
+        jq ".version = \"${NEW_VERSION}\"" < package.json > /tmp/package.json && mv /tmp/package.json package.json
+        jq ".version = \"${NEW_VERSION}\" | .packages[\"\"].version = \"${NEW_VERSION}\"" < package-lock.json > /tmp/package-lock.json && mv /tmp/package-lock.json package-lock.json
