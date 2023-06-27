@@ -121,7 +121,7 @@ jobs:
         MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
       run: |
         echo "::group::Publish to Sonatype"
-        ./gradlew --no-daemon publishToMavenLocal publishToSonatype closeAndReleaseSonatypeStagingRepository -Prelease
+        ./gradlew publishToMavenLocal publishToSonatype closeAndReleaseSonatypeStagingRepository -Prelease
         echo "::endgroup::"
 
         echo "## Successfully released ${RELEASE_VERSION} to Sonatype" >> $GITHUB_STEP_SUMMARY
