@@ -26,7 +26,7 @@ const log = logProvider.getLogger("api.TableListing");
 const groupItem = (
   key: Key,
   ref: string,
-  path: string[]
+  path: string[],
 ): React.ReactElement => {
   const icon =
     key.type === "CONTAINER" ? <Folder /> : <InsertDriveFileOutlined />;
@@ -46,7 +46,7 @@ const groupItem = (
 
 const fetchKeys = (
   ref: string,
-  path: string[]
+  path: string[],
 ): Promise<void | Key[] | undefined> => {
   const filter =
     path.length > 0

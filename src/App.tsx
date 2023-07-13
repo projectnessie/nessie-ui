@@ -44,7 +44,7 @@ const log = logProvider.getLogger("api.ExploreTree");
 const fetchLog = (
   ref: string,
   maxRecords: number,
-  pageToken = ""
+  pageToken = "",
 ): Promise<void | LogResponse | undefined> => {
   const params = pageToken
     ? { ref, maxRecords, pageToken }
@@ -111,7 +111,7 @@ const parseSlug = (
   branch: string,
   defaultBranch: string,
   branches: Branch[],
-  tags: Tag[]
+  tags: Tag[],
 ): Slug => {
   if (!branch || branch.length === 0) {
     return { currentRef: defaultBranch, path: [] };
@@ -137,7 +137,7 @@ const updateRef = (
   location: string,
   defaultBranch: string,
   branches: Branch[],
-  tags: Tag[]
+  tags: Tag[],
 ): Slug | void => {
   if (!defaultBranch || !branches) {
     return;
@@ -230,7 +230,7 @@ const App: React.FunctionComponent = () => {
         location.pathname,
         defaultBranch,
         branches.branches,
-        branches.tags
+        branches.tags,
       );
 
       if (newSlug) {
@@ -251,7 +251,7 @@ const App: React.FunctionComponent = () => {
     const fetchLogResults = await fetchLog(
       currentRef as string,
       rowsPerPage,
-      pageToken
+      pageToken,
     );
 
     if (fetchLogResults) {
@@ -280,7 +280,7 @@ const App: React.FunctionComponent = () => {
 
   const handleChangePage = (
     event: React.MouseEvent<HTMLButtonElement> | null,
-    newPage: number
+    newPage: number,
   ) => {
     setPage(newPage);
     if (hasMoreLog) {
@@ -289,7 +289,7 @@ const App: React.FunctionComponent = () => {
   };
 
   const handleChangeRowsPerPage = (
-    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);

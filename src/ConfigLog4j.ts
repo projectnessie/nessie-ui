@@ -33,5 +33,5 @@ export const logProvider = Log4TSProvider.createProvider(
         level: LogLevel.Info,
       },
     ],
-  }
+  },
 );
