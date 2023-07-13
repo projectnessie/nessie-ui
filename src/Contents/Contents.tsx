@@ -30,7 +30,7 @@ const log = logProvider.getLogger("api.TableListing");
 
 const fetchContent = (
   ref: string,
-  getMultipleContentsRequest: GetMultipleContentsRequest
+  getMultipleContentsRequest: GetMultipleContentsRequest,
 ): Promise<void | GetMultipleContentsResponse | undefined> => {
   return api()
     .getMultipleContents({

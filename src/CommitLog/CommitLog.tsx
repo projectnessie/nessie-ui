@@ -28,10 +28,10 @@ import { EmptyMessageView } from "../EmptyMessageView";
 type CommitLogProps = {
   handleChangePage: (
     event: React.MouseEvent<HTMLButtonElement> | null,
-    newPage: number
+    newPage: number,
   ) => void;
   handleChangeRowsPerPage: (
-    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => void;
   logList: LogEntry[];
   page: number;
