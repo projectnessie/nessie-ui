@@ -121,7 +121,7 @@
     "jest-resolve": "29.6.2",
     "jest-watch-typeahead": "2.2.2",
     "json5": "^2.2.3",
-    "lint-staged": "^13.0.3",
+    "lint-staged": "^14.0.0",
     "mini-css-extract-plugin": "2.7.6",
     "nock": "^13.2.9",
     "pnp-webpack-plugin": "1.7.0",
