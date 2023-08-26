@@ -118,7 +118,7 @@
     "jest": "29.6.3",
     "jest-circus": "29.6.3",
     "jest-environment-jsdom": "29.6.2",
-    "jest-resolve": "29.6.2",
+    "jest-resolve": "29.6.3",
     "jest-watch-typeahead": "2.2.2",
     "json5": "^2.2.3",
     "lint-staged": "^14.0.0",
