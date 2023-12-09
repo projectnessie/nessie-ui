@@ -113,7 +113,7 @@
     "follow-redirects": ">=1.15.2",
     "fork-ts-checker-webpack-plugin": ">=8.0.0",
     "fs-extra": "^11.0.0",
-    "html-webpack-plugin": "5.5.3",
+    "html-webpack-plugin": "5.5.4",
     "husky": "^8.0.1",
     "jest": "29.7.0",
     "jest-circus": "29.7.0",
