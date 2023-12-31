@@ -129,7 +129,7 @@
     "react-dev-utils": "^12.0.1",
     "replace-in-file": "^7.0.0",
     "sass-loader": "^13.0.2",
-    "terser-webpack-plugin": "5.3.9",
+    "terser-webpack-plugin": "5.3.10",
     "ts-pnp": "1.2.0",
     "webpack-dev-server": "^4.13.3",
     "webpack-manifest-plugin": "^5.0.0",
