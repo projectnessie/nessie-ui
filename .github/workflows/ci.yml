@@ -70,7 +70,7 @@ jobs:
       - name: NPM lint
         run: npm run lint
       - name: Generate UI jar
-        uses: gradle/gradle-build-action@v2
+        uses: gradle/actions/setup-gradle@v3
         with:
           cache-read-only: ${{ github.event_name != 'push' || github.ref != 'refs/heads/main' }}
           arguments: jar
