@@ -38,13 +38,13 @@ it("TableHead renders with path", () => {
           }
         />
       </Routes>
-    </MemoryRouter>
+    </MemoryRouter>,
   );
 
   expect(asFragment()).toMatchSnapshot();
   expect(screen.getByText("c").closest("a")).toHaveAttribute(
     "href",
-    "/tree/main/a/b/c"
+    "/tree/main/a/b/c",
   );
 });
 
@@ -64,7 +64,7 @@ it("TableHead renders without path", () => {
           }
         />
       </Routes>
-    </MemoryRouter>
+    </MemoryRouter>,
   );
 
   expect(asFragment()).toMatchSnapshot();
@@ -90,7 +90,7 @@ it("TableHead renders without current ref", () => {
           />
         </Route>
       </Routes>
-    </MemoryRouter>
+    </MemoryRouter>,
   );
 
   expect(asFragment()).toMatchSnapshot();
@@ -112,7 +112,7 @@ it("CommitHead renders with current ref", () => {
           }
         />
       </Routes>
-    </MemoryRouter>
+    </MemoryRouter>,
   );
 
   expect(asFragment()).toMatchSnapshot();
@@ -134,7 +134,7 @@ it("TableHead renders with different current ref", () => {
           }
         />
       </Routes>
-    </MemoryRouter>
+    </MemoryRouter>,
   );
 
   expect(asFragment()).toMatchSnapshot();
