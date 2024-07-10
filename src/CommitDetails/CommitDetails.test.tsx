@@ -44,7 +44,7 @@ it("Commit details renders", async () => {
           />
         </Routes>
       </MemoryRouter>
-    </React.StrictMode>
+    </React.StrictMode>,
   );
   await waitFor(() => getByText("commitMessage"));
   expect(asFragment()).toMatchSnapshot();

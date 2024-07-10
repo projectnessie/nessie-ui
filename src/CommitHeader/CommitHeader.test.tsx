@@ -41,7 +41,7 @@ it("CommitHeader renders", async () => {
   const { getByText, asFragment } = render(
     <React.StrictMode>
       <CommitHeader currentRef={"main"} />
-    </React.StrictMode>
+    </React.StrictMode>,
   );
   expect(asFragment()).toMatchSnapshot();
   await waitFor(() => getByText("deadbeef"));
