@@ -15,8 +15,6 @@
  */
 import React from "react";
 import ReactDOM from "react-dom";
-// eslint-disable-next-line import/no-internal-modules
-import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
 import { BrowserRouter as Router } from "react-router-dom";
 import { App } from "./App";

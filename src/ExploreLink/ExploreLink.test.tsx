@@ -25,13 +25,13 @@ it("ExploreLink renders with container", () => {
       <ExploreLink path={["a", "b", "c"]} toRef={"main"}>
         xxx
       </ExploreLink>
-    </BrowserRouter>,
+    </BrowserRouter>
   );
 
   expect(asFragment()).toMatchSnapshot();
   expect(screen.getByText("xxx").closest("a")).toHaveAttribute(
     "href",
-    "/tree/main/a/b/c",
+    "/tree/main/a/b/c"
   );
 });
 
@@ -43,12 +43,12 @@ it("ExploreLink renders with object", () => {
           xxx
         </ExploreLink>
       </BrowserRouter>
-    </React.StrictMode>,
+    </React.StrictMode>
   );
 
   expect(asFragment()).toMatchSnapshot();
   expect(screen.getByText("xxx").closest("a")).toHaveAttribute(
     "href",
-    "/content/main/",
+    "/content/main/"
   );
 });

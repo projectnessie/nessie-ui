@@ -40,7 +40,7 @@ it("TableListing renders", async () => {
       <Routes>
         <Route path={"/tree/:branch"} element={<TableListing />} />
       </Routes>
-    </MemoryRouter>,
+    </MemoryRouter>
   );
   expect(asFragment()).toMatchSnapshot();
   await waitFor(() => getByText("a"));
@@ -49,7 +49,7 @@ it("TableListing renders", async () => {
   expect(asFragment()).toMatchSnapshot();
   expect(screen.getByText("a").closest("a")).toHaveAttribute(
     "href",
-    "/tree/main/a",
+    "/tree/main/a"
   );
 });
 
@@ -64,13 +64,13 @@ it("TableListing redirects on an invalid ref", async () => {
         <Route path="/tree/:branch" element={<TableListing />} />
         <Route path={"/notfound"} element={<ShowPath />} />
       </Routes>
-    </MemoryRouter>,
+    </MemoryRouter>
   );
   expect(asFragment()).toMatchSnapshot();
   await waitFor(() =>
     getAllByText((content, element) => {
       return element?.tagName.toLowerCase() === "div";
-    }),
+    })
   );
 
   scope.isDone();

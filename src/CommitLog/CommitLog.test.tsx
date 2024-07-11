@@ -63,7 +63,7 @@ it("Commit log renders", async () => {
           />
         </Routes>
       </MemoryRouter>
-    </React.StrictMode>,
+    </React.StrictMode>
   );
   // disable snapshots w/ unique ids until https://github.com/facebook/jest/issues/8618 is fixed
   // expect(asFragment()).toMatchSnapshot();
@@ -96,13 +96,13 @@ it("Commit redirects on an invalid ref", async () => {
         />
         <Route path={"/notfound"} element={<ShowPath />} />
       </Routes>
-    </MemoryRouter>,
+    </MemoryRouter>
   );
   expect(asFragment()).toMatchSnapshot();
   await waitFor(() =>
     getAllByText((content, element) => {
       return element?.tagName.toLowerCase() === "div";
-    }),
+    })
   );
 
   expect(asFragment()).toMatchSnapshot();

@@ -25,13 +25,13 @@ import { Content } from "../utils";
 it("Render Iceberg Content", async () => {
   const scope = nock("http://localhost/api/v1")
     .get(
-      "/contents?hashOnRef=55cc2e40cbe2eed190f3987c53ffc34643d5cfa5ef878392d88b2eb4137e92e4&ref=dev",
+      "/contents?hashOnRef=55cc2e40cbe2eed190f3987c53ffc34643d5cfa5ef878392d88b2eb4137e92e4&ref=dev"
     )
     .reply(200, { contentList });
   const { getByAltText, asFragment } = render(
     <BrowserRouter>
       <ContentView tableContent={icebergTableContent} />
-    </BrowserRouter>,
+    </BrowserRouter>
   );
   expect(asFragment()).toMatchSnapshot();
   await waitFor(() => getByAltText("IcebergTable"));
@@ -41,20 +41,20 @@ it("Render Iceberg Content", async () => {
   expect(asFragment()).toMatchSnapshot();
   expect(screen.getByAltText("IcebergTable")).toHaveAttribute(
     "src",
-    "/iceberg.png",
+    "/iceberg.png"
   );
 });
 
 it("Render DeltaLake Content", async () => {
   const scope = nock("http://localhost/api/v1")
     .get(
-      "/contents?hashOnRef=55cc2e40cbe2eed190f3987c53ffc34643d5cfa5ef878392d88b2eb4137e92e4&ref=dev",
+      "/contents?hashOnRef=55cc2e40cbe2eed190f3987c53ffc34643d5cfa5ef878392d88b2eb4137e92e4&ref=dev"
     )
     .reply(200, { contentList });
   const { getByAltText, asFragment } = render(
     <BrowserRouter>
       <ContentView tableContent={deltaLakeContent} />
-    </BrowserRouter>,
+    </BrowserRouter>
   );
   expect(asFragment()).toMatchSnapshot();
   await waitFor(() => getByAltText("IcebergTable"));
@@ -64,20 +64,20 @@ it("Render DeltaLake Content", async () => {
   expect(asFragment()).toMatchSnapshot();
   expect(screen.getByAltText("IcebergTable")).toHaveAttribute(
     "src",
-    "/delta.png",
+    "/delta.png"
   );
 });
 
 it("Render Iceberg View Content", async () => {
   const scope = nock("http://localhost/api/v1")
     .get(
-      "/contents?hashOnRef=55cc2e40cbe2eed190f3987c53ffc34643d5cfa5ef878392d88b2eb4137e92e4&ref=dev",
+      "/contents?hashOnRef=55cc2e40cbe2eed190f3987c53ffc34643d5cfa5ef878392d88b2eb4137e92e4&ref=dev"
     )
     .reply(200, { contentList });
   const { getByText, asFragment } = render(
     <BrowserRouter>
       <ContentView tableContent={icebergViewContent} />
-    </BrowserRouter>,
+    </BrowserRouter>
   );
   expect(asFragment()).toMatchSnapshot();
   await waitFor(() => getByText("ICEBERG_VIEW"));

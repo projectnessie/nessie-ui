@@ -50,7 +50,7 @@ it("ExploreTree renders", async () => {
   const { getByText, asFragment } = render(
     <MemoryRouter initialEntries={["/tree/main"]}>
       <App />
-    </MemoryRouter>,
+    </MemoryRouter>
   );
   expect(asFragment()).toMatchSnapshot();
   await waitFor(() => getByText("Commit History"));
@@ -61,7 +61,7 @@ it("ExploreTree renders", async () => {
   expect(asFragment()).toMatchSnapshot();
   expect(screen.getByText("a").closest("a")).toHaveAttribute(
     "href",
-    "/tree/main/a",
+    "/tree/main/a"
   );
 });
 
@@ -101,7 +101,7 @@ it("ExploreTree renders commit", async () => {
   const { getByText, asFragment } = render(
     <MemoryRouter initialEntries={["/commits/main"]}>
       <App />
-    </MemoryRouter>,
+    </MemoryRouter>
   );
   expect(asFragment()).toMatchSnapshot();
   await waitFor(() => getByText("deadbeef"));
@@ -112,7 +112,7 @@ it("ExploreTree renders commit", async () => {
   // expect(asFragment()).toMatchSnapshot();
   expect(screen.getByText("commitMessage").closest("a")).toHaveAttribute(
     "href",
-    "/commits/main/deadbeef",
+    "/commits/main/deadbeef"
   );
 });
 
@@ -152,7 +152,7 @@ it("ExploreTree renders commit message", async () => {
   const { getByText, asFragment } = render(
     <MemoryRouter initialEntries={["/commits/main/deadbeef"]}>
       <App />
-    </MemoryRouter>,
+    </MemoryRouter>
   );
   expect(asFragment()).toMatchSnapshot();
   await waitFor(() => getByText("sally"));
@@ -173,7 +173,7 @@ it("ExploreTree renders with slug", async () => {
 
   const scope1 = nock("http://localhost/api/v1")
     .get(
-      "/trees/tree/main/entries?filter=entry.namespace.matches(%27%5Ea(%5C%5C.%7C%24)%27)&namespaceDepth=2",
+      "/trees/tree/main/entries?filter=entry.namespace.matches(%27%5Ea(%5C%5C.%7C%24)%27)&namespaceDepth=2"
     )
     .reply(200, { token: "foo", entries: [entry] });
   const scope2 = nock("http://localhost/api/v1")
@@ -194,7 +194,7 @@ it("ExploreTree renders with slug", async () => {
   const { getByText, asFragment } = render(
     <MemoryRouter initialEntries={["/tree/main/a"]}>
       <App />
-    </MemoryRouter>,
+    </MemoryRouter>
   );
   expect(asFragment()).toMatchSnapshot();
   await waitFor(() => getByText("a"));
@@ -205,7 +205,7 @@ it("ExploreTree renders with slug", async () => {
   expect(asFragment()).toMatchSnapshot();
   expect(screen.getByText("b").closest("a")).toHaveAttribute(
     "href",
-    "/tree/main/a/b",
+    "/tree/main/a/b"
   );
 });
 
