@@ -66,11 +66,12 @@ jobs:
       uses: ./.github/actions/dev-tool-java
     ### END runner setup
 
-    - name: Bump to release version
-      uses: gradle/actions/setup-gradle@v3
+    - name: Setup Gradle
+      uses: gradle/actions/setup-gradle@v4
       with:
         cache-disabled: true
-        arguments: :bumpVersion --bumpType ${{ env.BUMP_TYPE }} --bumpToRelease
+    - name: Bump to release version
+      run: ./gradlew :bumpVersion --bumpType ${{ env.BUMP_TYPE }} --bumpToRelease
 
     - name: Get release version
       run: |
@@ -129,9 +130,7 @@ jobs:
 
     # Bump to the next patch version as a SNAPSHOT
     - name: Bump to next patch version
-      uses: gradle/actions/setup-gradle@v3
-      with:
-        arguments: :bumpVersion --bumpType patch
+      run: ./gradlew :bumpVersion --bumpType patch
 
     - name: Get next patch version
       run: |

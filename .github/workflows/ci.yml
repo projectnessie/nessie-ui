@@ -69,8 +69,9 @@ jobs:
         run: npm test -- --coverage
       - name: NPM lint
         run: npm run lint
-      - name: Generate UI jar
-        uses: gradle/actions/setup-gradle@v3
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
         with:
           cache-read-only: ${{ github.event_name != 'push' || github.ref != 'refs/heads/main' }}
-          arguments: jar
+      - name: Generate UI jar
+        run: ./gradlew jar
