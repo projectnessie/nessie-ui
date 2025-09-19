@@ -35,7 +35,7 @@ it("TableListing renders object", async () => {
           <Route path={"/tree/:branch"} element={<TableListing />} />
         </Routes>
       </MemoryRouter>
-    </React.StrictMode>
+    </React.StrictMode>,
   );
   expect(asFragment()).toMatchSnapshot();
   await waitFor(() => getByText("b"));
@@ -44,6 +44,6 @@ it("TableListing renders object", async () => {
   expect(asFragment()).toMatchSnapshot();
   expect(screen.getByText("b").closest("a")).toHaveAttribute(
     "href",
-    "/content/main/b"
+    "/content/main/b",
   );
 });
