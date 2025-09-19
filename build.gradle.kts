@@ -16,7 +16,6 @@
 
 plugins {
   id("nessie-ui-conventions")
-  id("io.github.gradle-nexus.publish-plugin") version "2.0.0"
 }
 
 apply<ReleaseSupportPlugin>()
@@ -26,25 +25,6 @@ extra["maven.name"] = "Nessie UI"
 description = "Nessie UI resources"
 
 tasks.named<Wrapper>("wrapper") { distributionType = Wrapper.DistributionType.ALL }
-
-// Pass environment variables:
-//    ORG_GRADLE_PROJECT_sonatypeUsername
-//    ORG_GRADLE_PROJECT_sonatypePassword
-// OR in ~/.gradle/gradle.properties set
-//    sonatypeUsername
-//    sonatypePassword
-// Call targets:
-//    publishToSonatype
-//    closeAndReleaseSonatypeStagingRepository
-nexusPublishing {
-  transitionCheckOptions {
-    // default==60 (10 minutes), wait up to 60 minutes
-    maxRetries.set(360)
-    // default 10s
-    delayBetween.set(java.time.Duration.ofSeconds(10))
-  }
-  repositories { sonatype() }
-}
 
 publishingHelper {
   nessieRepoName.set("nessie")
