@@ -25,6 +25,6 @@ app.use(
   createProxyMiddleware({
     target: "http://localhost:19120",
     changeOrigin: true,
-  })
+  }),
 );
 app.listen(3000);

@@ -80,7 +80,7 @@ const CommitHeader = (props: { currentRef: string }): React.ReactElement => {
           {prettyMilliseconds(
             new Date().getTime() -
               (currentLog.commitMeta.commitTime ?? new Date(0)).getTime(),
-            { compact: true }
+            { compact: true },
           )}
         </span>
       </span>

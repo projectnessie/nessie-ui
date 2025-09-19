@@ -22,7 +22,7 @@ it("Test not found", async () => {
   render(
     <BrowserRouter>
       <NotFound />
-    </BrowserRouter>
+    </BrowserRouter>,
   );
   await screen.findByText("404 - Not found");
 });
