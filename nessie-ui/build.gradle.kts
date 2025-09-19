@@ -14,11 +14,15 @@
  * limitations under the License.
  */
 
+import io.github.zenhelix.gradle.plugin.extension.PublishingType
+import java.time.Duration
+
 plugins {
   `java-library`
   `maven-publish`
   signing
   id("nessie-ui-conventions")
+  id("io.github.zenhelix.maven-central-publish") version "0.8.0"
 }
 
 description = "Nessie Web UI"
@@ -42,6 +46,42 @@ plugins.withType<JavaPlugin>().configureEach {
   configure<JavaPluginExtension> {
     withJavadocJar()
     withSourcesJar()
+  }
+}
+
+// Pass environment variables:
+//    ORG_GRADLE_PROJECT_sonatypeUsername
+//    ORG_GRADLE_PROJECT_sonatypePassword
+// Gradle targets:
+//    publishAggregateMavenCentralDeployment
+//    (zipAggregateMavenCentralDeployment to just generate the single, aggregated deployment zip)
+// Ref: Maven Central Publisher API:
+//    https://central.sonatype.org/publish/publish-portal-api/#uploading-a-deployment-bundle
+mavenCentralPortal {
+  credentials {
+    username.value(provider { System.getenv("ORG_GRADLE_PROJECT_sonatypeUsername") })
+    password.value(provider { System.getenv("ORG_GRADLE_PROJECT_sonatypePassword") })
+  }
+
+  deploymentName = "${project.name}-$version"
+
+  // publishingType
+  //   AUTOMATIC = fully automatic release
+  //   USER_MANAGED = user has to manually publish/drop
+  publishingType =
+    if (System.getenv("CI") != null) PublishingType.AUTOMATIC else PublishingType.USER_MANAGED
+  // baseUrl = "https://central.sonatype.com"
+  uploader {
+    // 2 seconds * 3600 = 7200 seconds = 2hrs
+    delayRetriesStatusCheck = Duration.ofSeconds(2)
+    maxRetriesStatusCheck = 3600
+
+    aggregate {
+      // Aggregate submodules into a single archive
+      modules = false
+      // Aggregate publications into a single archive for each module
+      modulePublications = false
+    }
   }
 }
 

@@ -120,8 +120,8 @@ jobs:
         MAVEN_OSSRH_TOKEN: ${{ secrets.OSSRH_TOKEN }}
         MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
       run: |
-        echo "::group::Publish to Sonatype"
-        ./gradlew publishToMavenLocal publishToSonatype closeAndReleaseSonatypeStagingRepository -Prelease
+        echo "::group::Publish to Maven Central Portal"
+        ./gradlew publishMavenPublicationToMavenCentralPortal -Prelease
         echo "::endgroup::"
 
         echo "## Successfully released ${RELEASE_VERSION} to Sonatype" >> $GITHUB_STEP_SUMMARY
