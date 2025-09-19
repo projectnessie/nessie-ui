@@ -3,8 +3,8 @@ description: 'Sets up Java + Gradle'
 inputs:
   java-version:
     required: false
-    default: '11'
-    description: 'Java version, defaults to 11'
+    default: '21'
+    description: 'Java version, defaults to 21'
   gpg-private-key:
     required: false
     default: ''
@@ -29,10 +29,11 @@ runs:
         cat > ~/.gradle/init.d/cache-settings.gradle.kts <<!
         beforeSettings {
           caches {
-            releasedWrappers.setRemoveUnusedEntriesAfterDays(2)
+            releasedWrappers.setRemoveUnusedEntriesAfterDays(5)
             snapshotWrappers.setRemoveUnusedEntriesAfterDays(1)
-            downloadedResources.setRemoveUnusedEntriesAfterDays(5)
-            createdResources.setRemoveUnusedEntriesAfterDays(2)
+            downloadedResources.setRemoveUnusedEntriesAfterDays(2)
+            createdResources.setRemoveUnusedEntriesAfterDays(5)
+            buildCache.setRemoveUnusedEntriesAfterDays(5)
           }
         }
         !
