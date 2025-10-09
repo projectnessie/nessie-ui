@@ -73,7 +73,7 @@ jobs:
       - name: Setup Java, Gradle
         uses: ./.github/actions/dev-tool-java
       - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v4
+        uses: gradle/actions/setup-gradle@v5
         with:
           cache-read-only: ${{ github.event_name != 'push' || github.ref != 'refs/heads/main' }}
       - name: Generate UI jar
