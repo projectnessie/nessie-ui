@@ -127,7 +127,7 @@
     "pnp-webpack-plugin": "1.7.0",
     "prettier": "^3.0.0",
     "react-dev-utils": "^12.0.1",
-    "replace-in-file": "^7.0.0",
+    "replace-in-file": "^8.0.0",
     "sass-loader": "^16.0.0",
     "terser-webpack-plugin": "5.3.16",
     "ts-pnp": "1.2.0",
