@@ -22,7 +22,7 @@ plugins {
   `maven-publish`
   signing
   id("nessie-ui-conventions")
-  id("io.github.zenhelix.maven-central-publish") version "0.8.0"
+  id("io.github.zenhelix.maven-central-publish") version "0.11.2"
 }
 
 description = "Nessie Web UI"
