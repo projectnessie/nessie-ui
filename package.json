@@ -48,7 +48,7 @@
     "semver": "7.7.4",
     "source-map-loader": "^5.0.0",
     "style-loader": "4.0.0",
-    "typescript": "^5.0.0",
+    "typescript": "^6.0.0",
     "typescript-logging": "^2.1.0",
     "typescript-logging-log4ts-style": "^2.1.0",
     "webpack": "^5.81.0",
