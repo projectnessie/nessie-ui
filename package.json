@@ -24,7 +24,7 @@
     "dotenv": "17.4.2",
     "dotenv-expand": "13.0.0",
     "formik": "^2.2.9",
-    "http-proxy-middleware": "^3.0.0",
+    "http-proxy-middleware": "^4.0.0",
     "identity-obj-proxy": "3.0.0",
     "moment": "^2.29.4",
     "postcss": "8.5.15",
