@@ -17,20 +17,19 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 interface IExploreLink {
-  path: string[];
+  path?: string[];
   toRef: string;
-  type: "CONTAINER" | "OBJECT" | "COMMIT";
+  type?: "CONTAINER" | "OBJECT" | "COMMIT";
   className?: string;
-  children?: React.ReactChild | React.ReactChild[];
+  children?: React.ReactNode;
 }
 const ExploreLink = ({
-  path,
+  path = [],
   toRef,
-  type,
+  type = "CONTAINER",
   className,
   children,
 }: IExploreLink): React.ReactElement => {
-  path = path || [];
   const currentRef = toRef;
   const prefix =
     type === "CONTAINER"
@@ -47,11 +46,6 @@ const ExploreLink = ({
       {children}
     </Link>
   );
-};
-
-ExploreLink.defaultProps = {
-  type: "CONTAINER",
-  path: [],
 };
 
 export default ExploreLink;

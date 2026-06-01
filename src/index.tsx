@@ -14,16 +14,20 @@
  * limitations under the License.
  */
 import React from "react";
-import ReactDOM from "react-dom";
+// eslint-disable-next-line import/no-internal-modules
+import { createRoot } from "react-dom/client";
 import "./index.css";
 import { BrowserRouter as Router } from "react-router-dom";
 import { App } from "./App";
 
-ReactDOM.render(
-  <React.StrictMode>
-    <Router>
-      <App />
-    </Router>
-  </React.StrictMode>,
-  document.getElementById("root"),
-);
+const root = document.getElementById("root");
+
+if (root) {
+  createRoot(root).render(
+    <React.StrictMode>
+      <Router>
+        <App />
+      </Router>
+    </React.StrictMode>,
+  );
+}
