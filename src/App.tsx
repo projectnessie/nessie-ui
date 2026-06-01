@@ -238,7 +238,7 @@ const App: React.FunctionComponent = () => {
         setPath(newSlug.path);
         setViewCommits(newSlug.isCommits || false);
       }
-    } catch (e) {
+    } catch {
       if (location.pathname === "/notfound" || location.pathname === "/") {
         return;
       }

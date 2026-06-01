@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-member-access */
 /*
  * Copyright (C) 2020 Dremio
  *
@@ -15,13 +14,14 @@
  * limitations under the License.
  */
 import { createProxyMiddleware } from "http-proxy-middleware";
+// eslint-disable-next-line import/no-extraneous-dependencies
+import express from "express";
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires,import/no-extraneous-dependencies
-const express = require("express");
 const app = express();
 
 app.use(
   "/api/v1/",
+  // eslint-disable-next-line @typescript-eslint/no-misused-promises
   createProxyMiddleware({
     target: "http://localhost:19120",
     changeOrigin: true,

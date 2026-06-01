@@ -14,7 +14,23 @@
  * limitations under the License.
  */
 
-module.exports = {
+import js from "@eslint/js";
+import { fixupConfigRules } from "@eslint/compat";
+import { FlatCompat } from "@eslint/eslintrc";
+import unicorn from "eslint-plugin-unicorn";
+import { fileURLToPath } from "node:url";
+import path from "node:path";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const compat = new FlatCompat({
+  baseDirectory: __dirname,
+  recommendedConfig: js.configs.recommended,
+  allConfig: js.configs.all,
+});
+
+const eslintConfigs = compat.config({
   env: {
     browser: true,
     es6: true,
@@ -32,12 +48,11 @@ module.exports = {
     sourceType: "module",
   },
   plugins: [
-    "eslint-plugin-import",
-    "eslint-plugin-jsdoc",
-    "eslint-plugin-prefer-arrow",
-    "eslint-plugin-unicorn",
-    "eslint-plugin-react",
-    "eslint-plugin-prettier",
+    "import",
+    "jsdoc",
+    "prefer-arrow",
+    "react",
+    "prettier",
     "@typescript-eslint",
   ],
   settings: {
@@ -54,7 +69,7 @@ module.exports = {
         default: "array",
       },
     ],
-    "@typescript-eslint/ban-types": [
+    "@typescript-eslint/no-restricted-types": [
       "error",
       {
         types: {
@@ -122,8 +137,6 @@ module.exports = {
     "@typescript-eslint/prefer-for-of": "error",
     "@typescript-eslint/prefer-function-type": "error",
     "@typescript-eslint/prefer-namespace-keyword": "error",
-    "@typescript-eslint/quotes": "off",
-    "@typescript-eslint/semi": ["off", null],
     "@typescript-eslint/triple-slash-reference": [
       "error",
       {
@@ -132,7 +145,6 @@ module.exports = {
         lib: "always",
       },
     ],
-    "@typescript-eslint/type-annotation-spacing": "off",
     "@typescript-eslint/unified-signatures": "error",
     "arrow-parens": ["off", "always"],
     "brace-style": ["off", "off"],
@@ -249,4 +261,13 @@ module.exports = {
     "use-isnan": "error",
     "valid-typeof": "off",
   },
-};
+});
+
+export default [
+  {
+    plugins: {
+      unicorn,
+    },
+  },
+  ...fixupConfigRules(eslintConfigs),
+];
