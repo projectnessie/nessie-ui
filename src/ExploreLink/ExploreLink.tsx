@@ -35,8 +35,8 @@ const ExploreLink = ({
     type === "CONTAINER"
       ? "/tree/"
       : type === "OBJECT"
-      ? "/content/"
-      : "/commits/";
+        ? "/content/"
+        : "/commits/";
   return (
     <Link
       to={`${prefix}${currentRef}/${path.join("/")}`}
