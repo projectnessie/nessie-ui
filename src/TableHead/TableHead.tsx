@@ -31,7 +31,7 @@ interface ITableHeadProps {
 type NavDropdownProps = {
   branches: Branch[];
   tags: Tag[];
-  currentRef: string;
+  currentRef?: string;
   defaultBranch: string;
   path: string[];
   type: "CONTAINER" | "OBJECT" | "COMMIT";

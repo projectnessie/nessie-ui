@@ -43,7 +43,7 @@ const TreeBase = ({
         branches={branches}
         tags={tags}
         defaultBranch={defaultBranch}
-        currentRef={currentRef as string}
+        currentRef={currentRef}
         path={path}
         type={content ? "OBJECT" : "CONTAINER"}
       />
@@ -57,7 +57,7 @@ const TreeBase = ({
         branches={branches}
         tags={tags}
         defaultBranch={defaultBranch}
-        currentRef={currentRef as string}
+        currentRef={currentRef}
         path={path}
       />
       <Card>

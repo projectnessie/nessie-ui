@@ -41,7 +41,7 @@ const CommitBase = ({
         branches={branches}
         tags={tags}
         defaultBranch={defaultBranch}
-        currentRef={currentRef as string}
+        currentRef={currentRef}
         path={path}
       />
       <Card className={"commitLog"}>
