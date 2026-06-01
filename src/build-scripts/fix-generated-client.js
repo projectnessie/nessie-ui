@@ -17,13 +17,13 @@
 console.log("Client API: Applying post-generation code fixups");
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const replace = require("replace-in-file");
+const { replaceInFileSync } = require("replace-in-file");
 
 // openapi-generator produces Line 128 in runtime.ts as
 //    export type FetchAPI = GlobalFetch['fetch'];
 // but must be
 //    export type FetchAPI = WindowOrWorkerGlobalScope['fetch'];
-replace.sync({
+replaceInFileSync({
   files: "src/generated/utils/api/runtime.ts",
   from: /GlobalFetch/g,
   to: "WindowOrWorkerGlobalScope",
