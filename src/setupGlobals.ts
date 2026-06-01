@@ -14,5 +14,26 @@
  * limitations under the License.
  */
 import { TextDecoder, TextEncoder } from "util";
+import { ReadableStream, TransformStream, WritableStream } from "stream/web";
+import { MessagePort } from "worker_threads";
 
-Object.assign(globalThis, { TextDecoder, TextEncoder });
+Object.assign(globalThis, {
+  MessagePort,
+  ReadableStream,
+  TextDecoder,
+  TextEncoder,
+  TransformStream,
+  WritableStream,
+});
+
+// eslint-disable-next-line @typescript-eslint/no-var-requires,@typescript-eslint/no-require-imports
+const undici = require("undici") as typeof import("undici");
+const { fetch, FormData, Headers, Request, Response } = undici;
+
+Object.assign(globalThis, {
+  fetch,
+  FormData,
+  Headers,
+  Request,
+  Response,
+});
