@@ -62,6 +62,7 @@ jobs:
       with:
         ref: ${{ env.RELEASE_FROM }}
         fetch-depth: '0'
+        token: ${{ secrets.NESSIE_BUILDER }}
     - name: Setup Java, Gradle
       uses: ./.github/actions/dev-tool-java
     ### END runner setup
@@ -164,13 +165,4 @@ jobs:
     # The `release-publish.yml` job will run when the release tag `nessie-x.y.z` has been pushed.
     - name: Push tag + branch
       run: |
-        # Push directly using the remote repo URL, which includes the secret so this job can push to the repo
-        UPSTREAM="https://${{ secrets.NESSIE_BUILDER }}@github.com/${GITHUB_REPOSITORY}.git"
-
-        # Move the default auth settings in ~/.gitconfig out of the way, so the git-push can use the token
-        git config --rename-section http.https://github.com/ http.https://save.github.com/
-
-        git push --no-verify "${UPSTREAM}" HEAD:${GITHUB_REF} ${GIT_TAG}
-
-        # Move the default auth settings in ~/.gitconfig back
-        git config --rename-section http.https://save.github.com/ http.https://github.com/
+        git push --no-verify origin HEAD:main ${GIT_TAG}
