@@ -120,7 +120,9 @@ const CommitLog = ({
                 <Button
                   variant="light"
                   className={"ml-3 rightBtnHover"}
-                  onClick={() => history(`/tree/${branch}:${hash as string}`)}
+                  onClick={() =>
+                    void history(`/tree/${branch}:${hash as string}`)
+                  }
                 >
                   <Code />
                 </Button>

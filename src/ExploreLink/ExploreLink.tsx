@@ -39,7 +39,11 @@ const ExploreLink = ({
       ? "/content/"
       : "/commits/";
   return (
-    <Link to={`${prefix}${currentRef}/${path.join("/")}`} className={className}>
+    <Link
+      to={`${prefix}${currentRef}/${path.join("/")}`}
+      className={className}
+      discover="none"
+    >
       {children}
     </Link>
   );
