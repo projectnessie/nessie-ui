@@ -29,19 +29,16 @@ process.on("unhandledRejection", (err) => {
 // Ensure environment variables are read.
 require("../config/env");
 
-const fs = require("fs");
-const chalk = require("react-dev-utils/chalk");
+const chalk = require("chalk");
 const webpack = require("webpack");
 const WebpackDevServer = require("webpack-dev-server");
-const clearConsole = require("react-dev-utils/clearConsole");
-const checkRequiredFiles = require("react-dev-utils/checkRequiredFiles");
 const {
   choosePort,
-  createCompiler,
   prepareProxy,
   prepareUrls,
-} = require("react-dev-utils/WebpackDevServerUtils");
-const openBrowser = require("react-dev-utils/openBrowser");
+  clearConsole,
+} = require("../config/dev-server-utils");
+const { checkRequiredFiles } = require("../config/build-utils");
 const semver = require("semver");
 const paths = require("../config/paths");
 const configFactory = require("../config/webpack.config");
@@ -50,7 +47,6 @@ const getClientEnvironment = require("../config/env");
 const react = require(require.resolve("react", { paths: [paths.appPath] }));
 
 const env = getClientEnvironment(paths.publicUrlOrPath.slice(0, -1));
-const useYarn = fs.existsSync(paths.yarnLockFile);
 const isInteractive = process.stdout.isTTY;
 
 // Warn and crash if required files are missing
@@ -79,15 +75,7 @@ if (process.env.HOST) {
   console.log();
 }
 
-// We require that you explicitly set browsers and do not fall back to
-// browserslist defaults.
-const { checkBrowsers } = require("react-dev-utils/browsersHelper");
-checkBrowsers(paths.appPath, isInteractive)
-  .then(() => {
-    // We attempt to use the default port but if it is busy, we offer the user to
-    // run on a different port. `choosePort()` Promise resolves to the next free port.
-    return choosePort(HOST, DEFAULT_PORT);
-  })
+choosePort(HOST, DEFAULT_PORT)
   .then((port) => {
     if (port == null) {
       // We have not found a port.
@@ -96,33 +84,13 @@ checkBrowsers(paths.appPath, isInteractive)
 
     const config = configFactory("development");
     const protocol = process.env.HTTPS === "true" ? "https" : "http";
-    const appName = require(paths.appPackageJson).name;
-
-    const useTypeScript = fs.existsSync(paths.appTsConfig);
-    const tscCompileOnError = process.env.TSC_COMPILE_ON_ERROR === "true";
     const urls = prepareUrls(
       protocol,
       HOST,
       port,
       paths.publicUrlOrPath.slice(0, -1)
     );
-    const devSocket = {
-      warnings: (warnings) =>
-        devServer.sendMessage(devServer.sockets, "warnings", warnings),
-      errors: (errors) =>
-        devServer.sendMessage(devServer.sockets, "errors", errors),
-    };
-    // Create a webpack compiler that is configured with custom messages.
-    const compiler = createCompiler({
-      appName,
-      config,
-      devSocket,
-      urls,
-      useYarn,
-      useTypeScript,
-      tscCompileOnError,
-      webpack,
-    });
+    const compiler = webpack(config);
     // Load proxy config
     const proxySetting = require(paths.appPackageJson).proxy;
     const proxyConfig = prepareProxy(
@@ -137,7 +105,7 @@ checkBrowsers(paths.appPath, isInteractive)
       HOST,
       port
     );
-   const devServer = new WebpackDevServer(serverConfig, compiler);
+    const devServer = new WebpackDevServer(serverConfig, compiler);
     (async () => {
       try {
         await devServer.start();
@@ -158,9 +126,8 @@ checkBrowsers(paths.appPath, isInteractive)
       }
 
       console.log(chalk.cyan("Starting the development server...\n"));
-      openBrowser(urls.localUrlForBrowser);
+      console.log(`Local: ${urls.localUrlForBrowser}`);
     })();
-
 
     ["SIGINT", "SIGTERM"].forEach(function (sig) {
       process.on(sig, function () {

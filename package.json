@@ -77,6 +77,17 @@
   "proxy": "http://localhost:19120",
   "devDependencies": {
     "@babel/core": "^7.19.1",
+    "@babel/plugin-transform-class-properties": "^7.29.7",
+    "@babel/plugin-transform-nullish-coalescing-operator": "^7.29.7",
+    "@babel/plugin-transform-numeric-separator": "^7.29.7",
+    "@babel/plugin-transform-optional-chaining": "^7.29.7",
+    "@babel/plugin-transform-private-methods": "^7.29.7",
+    "@babel/plugin-transform-private-property-in-object": "^7.29.7",
+    "@babel/plugin-transform-runtime": "^7.29.7",
+    "@babel/preset-env": "^7.29.7",
+    "@babel/preset-react": "^7.29.7",
+    "@babel/preset-typescript": "^7.29.7",
+    "@babel/runtime": "^7.29.7",
     "@eslint-react/eslint-plugin": "^5.8.9",
     "@eslint/compat": "^2.1.0",
     "@eslint/eslintrc": "^3.3.5",
@@ -94,8 +105,10 @@
     "babel-jest": "^30.0.0",
     "babel-loader": "10.1.1",
     "babel-plugin-named-asset-import": "^0.3.8",
-    "babel-preset-react-app": "^10.0.0",
+    "babel-plugin-macros": "^3.1.0",
+    "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "case-sensitive-paths-webpack-plugin": "2.4.0",
+    "chalk": "^4.1.2",
     "css-minimizer-webpack-plugin": "^8.0.0",
     "eslint": "^10.0.0",
     "eslint-config-prettier": "^10.0.0",
@@ -125,7 +138,6 @@
     "nock": "^14.0.15",
     "pnp-webpack-plugin": "1.7.0",
     "prettier": "^3.0.0",
-    "react-dev-utils": "^12.0.1",
     "replace-in-file": "^8.0.0",
     "sass-loader": "^17.0.0",
     "terser-webpack-plugin": "5.6.1",
@@ -193,7 +205,7 @@
   },
   "babel": {
     "presets": [
-      "react-app"
+      "./config/babel-preset"
     ]
   }
 }

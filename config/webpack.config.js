@@ -21,41 +21,24 @@ const webpack = require("webpack");
 const resolve = require("resolve");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CaseSensitivePathsPlugin = require("case-sensitive-paths-webpack-plugin");
-const InlineChunkHtmlPlugin = require("react-dev-utils/InlineChunkHtmlPlugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const { WebpackManifestPlugin } = require("webpack-manifest-plugin");
-const InterpolateHtmlPlugin = require("react-dev-utils/InterpolateHtmlPlugin");
+const {
+  InlineChunkHtmlPlugin,
+  InterpolateHtmlPlugin,
+} = require("./html-plugins");
 const WorkboxWebpackPlugin = require("workbox-webpack-plugin");
-const ModuleScopePlugin = require("react-dev-utils/ModuleScopePlugin");
-const getCSSModuleLocalIdent = require("react-dev-utils/getCSSModuleLocalIdent");
 const ESLintPlugin = require("eslint-webpack-plugin");
 const paths = require("./paths");
 const modules = require("./modules");
 const getClientEnvironment = require("./env");
-const ModuleNotFoundPlugin = require("react-dev-utils/ModuleNotFoundPlugin");
-const ForkTsCheckerWebpackPlugin =
-  process.env.TSC_COMPILE_ON_ERROR === "true"
-    ? require("react-dev-utils/ForkTsCheckerWarningWebpackPlugin")
-    : require("react-dev-utils/ForkTsCheckerWebpackPlugin");
+const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
 
 // Source maps are resource heavy and can cause out of memory issue for large source files.
 const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== "false";
-
-const reactRefreshRuntimeEntry = require.resolve("react-refresh/runtime");
-const reactRefreshWebpackPluginRuntimeEntry = require.resolve(
-  "@pmmmwh/react-refresh-webpack-plugin"
-);
-const babelRuntimeEntry = require.resolve("babel-preset-react-app");
-const babelRuntimeEntryHelpers = require.resolve(
-  "@babel/runtime/helpers/esm/assertThisInitialized",
-  { paths: [babelRuntimeEntry] }
-);
-const babelRuntimeRegenerator = require.resolve("@babel/runtime/regenerator", {
-  paths: [babelRuntimeEntry],
-});
 
 // Some apps do not need the benefits of saving a web request, so not inlining the chunk
 // makes for a smoother build process.
@@ -332,21 +315,7 @@ module.exports = function (webpackEnv) {
         }),
         ...(modules.webpackAliases || {}),
       },
-      plugins: [
-        // Prevents users from importing files from outside of src/ (or node_modules/).
-        // This often causes confusion because we only process files within src/ with babel.
-        // To fix this, we prevent you from importing files out of src/ -- if you'd like to,
-        // please link the files into your node_modules/ and let module-resolution kick in.
-        // Make sure your source files are compiled, as they will not be processed in any way.
-        new ModuleScopePlugin(paths.appSrc, [
-          paths.appPackageJson,
-          reactRefreshRuntimeEntry,
-          reactRefreshWebpackPluginRuntimeEntry,
-          babelRuntimeEntry,
-          babelRuntimeEntryHelpers,
-          babelRuntimeRegenerator,
-        ]),
-      ],
+      plugins: [],
     },
     module: {
       strictExportPresence: true,
@@ -420,12 +389,9 @@ module.exports = function (webpackEnv) {
               include: paths.appSrc,
               loader: require.resolve("babel-loader"),
               options: {
-                customize: require.resolve(
-                  "babel-preset-react-app/webpack-overrides"
-                ),
                 presets: [
                   [
-                    require.resolve("babel-preset-react-app"),
+                    require.resolve("../config/babel-preset"),
                     {
                       runtime: hasJsxRuntime ? "automatic" : "classic",
                     },
@@ -458,7 +424,7 @@ module.exports = function (webpackEnv) {
                 compact: false,
                 presets: [
                   [
-                    require.resolve("babel-preset-react-app/dependencies"),
+                    require.resolve("../config/babel-dependencies-preset"),
                     { helpers: true },
                   ],
                 ],
@@ -509,7 +475,7 @@ module.exports = function (webpackEnv) {
                   : isEnvDevelopment,
                 modules: {
                   mode: "local",
-                  getLocalIdent: getCSSModuleLocalIdent,
+                  localIdentName: "[name]_[local]__[hash:base64:5]",
                 },
               }),
             },
@@ -549,7 +515,7 @@ module.exports = function (webpackEnv) {
                     : isEnvDevelopment,
                   modules: {
                     mode: "local",
-                    getLocalIdent: getCSSModuleLocalIdent,
+                    localIdentName: "[name]_[local]__[hash:base64:5]",
                   },
                 },
                 "sass-loader"
@@ -613,9 +579,6 @@ module.exports = function (webpackEnv) {
       // It will be an empty string unless you specify "homepage"
       // in `package.json`, in which case it will be the pathname of that URL.
       new InterpolateHtmlPlugin(HtmlWebpackPlugin, env.raw),
-      // This gives some necessary context to module not found errors, such as
-      // the requesting resource.
-      new ModuleNotFoundPlugin(paths.appPath),
       // Makes some environment variables available to the JS code, for example:
       // if (process.env.NODE_ENV === 'production') { ... }. See `./env.js`.
       // It is absolutely essential that NODE_ENV is set to production
@@ -723,15 +686,12 @@ module.exports = function (webpackEnv) {
               { file: "**/src/setupTests.*" },
             ],
           },
-          logger: {
-            infrastructure: "silent",
-          },
+          logger: console,
         }),
       !disableESLintPlugin &&
         new ESLintPlugin({
           // Plugin options
           extensions: ["js", "mjs", "jsx", "ts", "tsx"],
-          formatter: require.resolve("react-dev-utils/eslintFormatter"),
           eslintPath: require.resolve("eslint"),
           failOnError: !(isEnvDevelopment && emitErrorsAsWarnings),
           context: paths.appSrc,
