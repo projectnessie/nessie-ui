@@ -14,7 +14,21 @@
  * limitations under the License.
  */
 
-module.exports = {
+import js from "@eslint/js";
+import { FlatCompat } from "@eslint/eslintrc";
+import { fileURLToPath } from "node:url";
+import path from "node:path";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const compat = new FlatCompat({
+  baseDirectory: __dirname,
+  recommendedConfig: js.configs.recommended,
+  allConfig: js.configs.all,
+});
+
+export default compat.config({
   env: {
     browser: true,
     es6: true,
@@ -32,12 +46,12 @@ module.exports = {
     sourceType: "module",
   },
   plugins: [
-    "eslint-plugin-import",
-    "eslint-plugin-jsdoc",
-    "eslint-plugin-prefer-arrow",
-    "eslint-plugin-unicorn",
-    "eslint-plugin-react",
-    "eslint-plugin-prettier",
+    "import",
+    "jsdoc",
+    "prefer-arrow",
+    "unicorn",
+    "react",
+    "prettier",
     "@typescript-eslint",
   ],
   settings: {
@@ -249,4 +263,4 @@ module.exports = {
     "use-isnan": "error",
     "valid-typeof": "off",
   },
-};
+});

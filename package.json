@@ -62,9 +62,6 @@
     "generate-api": "openapi-generator-cli generate -g typescript-fetch -i src/openapi/nessie-openapi-0.45.0.yaml -o src/generated/utils/api --additional-properties=supportsES6=true",
     "fix-generated-client": "node src/build-scripts/fix-generated-client.js"
   },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
   "browserslist": {
     "production": [
       ">0.2%",
