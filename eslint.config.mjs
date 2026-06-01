@@ -17,6 +17,9 @@
 import js from "@eslint/js";
 import { fixupConfigRules } from "@eslint/compat";
 import { FlatCompat } from "@eslint/eslintrc";
+import eslintReact from "@eslint-react/eslint-plugin";
+import stylistic from "@stylistic/eslint-plugin";
+import importX from "eslint-plugin-import-x";
 import unicorn from "eslint-plugin-unicorn";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
@@ -36,7 +39,6 @@ const eslintConfigs = compat.config({
     es6: true,
   },
   extends: [
-    "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:@typescript-eslint/recommended-requiring-type-checking",
     "prettier",
@@ -48,18 +50,11 @@ const eslintConfigs = compat.config({
     sourceType: "module",
   },
   plugins: [
-    "import",
     "jsdoc",
     "prefer-arrow",
-    "react",
     "prettier",
     "@typescript-eslint",
   ],
-  settings: {
-    react: {
-      version: "detect",
-    },
-  },
   rules: {
     "prettier/prettier": "error",
     "@typescript-eslint/adjacent-overload-signatures": "error",
@@ -168,8 +163,8 @@ const eslintConfigs = compat.config({
       "undefined",
     ],
     "id-match": "error",
-    "import/no-extraneous-dependencies": "error",
-    "import/no-internal-modules": [
+    "import-x/no-extraneous-dependencies": "error",
+    "import-x/no-internal-modules": [
       "error",
       {
         allow: ["@testing-library/jest-dom/*", "@material-ui/icons/*"],
@@ -233,20 +228,18 @@ const eslintConfigs = compat.config({
     "quote-props": "off",
     quotes: "off",
     radix: "error",
-    "react/jsx-boolean-value": "error",
-    "react/jsx-curly-spacing": "off",
-    "react/jsx-equals-spacing": "off",
-    "react/jsx-key": "error",
-    "react/jsx-no-bind": ["error", { allowArrowFunctions: true }],
-    "react/jsx-tag-spacing": [
+    "@eslint-react/no-missing-key": "error",
+    "@stylistic/jsx-curly-spacing": "off",
+    "@stylistic/jsx-equals-spacing": "off",
+    "@stylistic/jsx-self-closing-comp": "error",
+    "@stylistic/jsx-tag-spacing": [
       "off",
       {
         afterOpening: "allow",
         closingSlash: "allow",
       },
     ],
-    "react/jsx-wrap-multilines": "off",
-    "react/self-closing-comp": "error",
+    "@stylistic/jsx-wrap-multilines": "off",
     semi: "off",
     "space-before-function-paren": "off",
     "space-in-parens": ["off", "never"],
@@ -266,6 +259,9 @@ const eslintConfigs = compat.config({
 export default [
   {
     plugins: {
+      "@eslint-react": eslintReact,
+      "@stylistic": stylistic,
+      "import-x": importX,
       unicorn,
     },
   },

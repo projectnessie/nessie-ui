@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 import { createProxyMiddleware } from "http-proxy-middleware";
-// eslint-disable-next-line import/no-extraneous-dependencies
+// eslint-disable-next-line import-x/no-extraneous-dependencies
 import express from "express";
 
 const app = express();
