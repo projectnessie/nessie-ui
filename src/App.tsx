@@ -242,7 +242,7 @@ const App: React.FunctionComponent = () => {
       if (location.pathname === "/notfound" || location.pathname === "/") {
         return;
       }
-      history("/notfound");
+      void history("/notfound");
     }
   }, [location, defaultBranch, branches]);
 
@@ -265,7 +265,7 @@ const App: React.FunctionComponent = () => {
       setHasMoreLog(hasMore);
       setPaginationToken(token);
     } else {
-      history("/notfound");
+      void history("/notfound");
     }
   };
 
