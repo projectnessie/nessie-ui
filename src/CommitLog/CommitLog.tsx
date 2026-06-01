@@ -136,15 +136,17 @@ const CommitLog = ({
 
   const paginator = () => (
     <TablePagination
-      component="div"
       count={!hasMoreLog ? logList.length : -1}
       page={page}
       onPageChange={handleChangePage}
       rowsPerPage={rowsPerPage}
       onRowsPerPageChange={handleChangeRowsPerPage}
-      SelectProps={{
-        id: "commitLogRowPerPageSelect",
-        labelId: "commitLogRowPerPageSelectLabel",
+      slots={{ root: "div" }}
+      slotProps={{
+        select: {
+          id: "commitLogRowPerPageSelect",
+          labelId: "commitLogRowPerPageSelectLabel",
+        },
       }}
     />
   );
