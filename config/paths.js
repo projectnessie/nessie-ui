@@ -17,7 +17,6 @@
 
 const path = require("path");
 const fs = require("fs");
-const getPublicUrlOrPath = require("react-dev-utils/getPublicUrlOrPath");
 
 // Make sure any symlinks in the project folder are resolved:
 // https://github.com/facebook/create-react-app/issues/637
@@ -86,3 +85,32 @@ module.exports = {
 };
 
 module.exports.moduleFileExtensions = moduleFileExtensions;
+
+function getPublicUrlOrPath(isEnvDevelopment, homepage, envPublicUrl) {
+  if (envPublicUrl) {
+    return ensureSlash(
+      isEnvDevelopment ? "/" : new URL(envPublicUrl).pathname,
+      true
+    );
+  }
+
+  if (homepage) {
+    const homepagePath = homepage.startsWith(".")
+      ? homepage
+      : new URL(homepage, "https://example.com").pathname;
+    return isEnvDevelopment ? "/" : ensureSlash(homepagePath, true);
+  }
+
+  return "/";
+}
+
+function ensureSlash(inputPath, needsSlash) {
+  const hasSlash = inputPath.endsWith("/");
+  if (hasSlash && !needsSlash) {
+    return inputPath.slice(0, -1);
+  }
+  if (!hasSlash && needsSlash) {
+    return `${inputPath}/`;
+  }
+  return inputPath;
+}
