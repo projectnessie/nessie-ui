@@ -11,7 +11,7 @@
     "@svgr/webpack": "8.1.0",
     "@types/bootstrap": "^5.2.6",
     "@types/material-ui": "^0.21.12",
-    "@types/ramda": "^0.31.0",
+    "@types/ramda": "^0.32.0",
     "@types/react": "^19.0.0",
     "@types/react-bootstrap": "^1.0.0",
     "@types/react-dom": "^19.0.0",
