@@ -135,7 +135,7 @@
     "json5": "^2.2.3",
     "lint-staged": "^17.0.0",
     "mini-css-extract-plugin": "2.10.2",
-    "nock": "^14.0.15",
+    "nock": "^15.0.0",
     "pnp-webpack-plugin": "1.7.0",
     "prettier": "^3.0.0",
     "replace-in-file": "^9.0.0",
