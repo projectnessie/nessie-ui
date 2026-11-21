@@ -22,10 +22,10 @@ import { EmptyMessageView } from "../EmptyMessageView";
 const ContentView = (props: { tableContent?: Content }): React.ReactElement => {
   const { tableContent } = props;
 
-  const imageView = (imgPath: string) => {
+  const imageView = (imgPath: string, altText: string) => {
     return (
       <div className={"ContentView__imagetWrapper"}>
-        <img alt="IcebergTable" src={`${imgPath}`} width="180" height="180" />
+        <img alt={altText} src={`${imgPath}`} width="120" height="120" />
       </div>
     );
   };
@@ -38,6 +38,7 @@ const ContentView = (props: { tableContent?: Content }): React.ReactElement => {
     } = deltaContent;
     return (
       <div className={"ContentView"}>
+        {imageView("/delta.png", "Delta Lake table")}
         <div className={"ContentView__contentWrapper"}>
           <div>
             <span>Type:</span>
@@ -78,7 +79,6 @@ const ContentView = (props: { tableContent?: Content }): React.ReactElement => {
             </div>
           )}
         </div>
-        {imageView("/delta.png")}
       </div>
     );
   };
@@ -87,6 +87,7 @@ const ContentView = (props: { tableContent?: Content }): React.ReactElement => {
     const { metadataLocation } = icebergContent;
     return (
       <div className={"ContentView"}>
+        {imageView("/iceberg.png", "Iceberg table")}
         <div className={"ContentView__contentWrapper"}>
           <div>
             <span>Type:</span>
@@ -99,7 +100,6 @@ const ContentView = (props: { tableContent?: Content }): React.ReactElement => {
             </div>
           )}
         </div>
-        {imageView("/iceberg.png")}
       </div>
     );
   };
@@ -109,6 +109,7 @@ const ContentView = (props: { tableContent?: Content }): React.ReactElement => {
       icebergViewContent;
     return (
       <div className={"ContentView"}>
+        {imageView("/iceberg.png", "Iceberg view")}
         <div className={"ContentView__contentWrapper"}>
           <div>
             <span>Type:</span>
@@ -145,7 +146,6 @@ const ContentView = (props: { tableContent?: Content }): React.ReactElement => {
             </div>
           )}
         </div>
-        {imageView("/iceberg.png")}
       </div>
     );
   };

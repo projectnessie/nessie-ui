@@ -6,6 +6,16 @@ exports[`Render DeltaLake Content 1`] = `
     class="ContentView"
   >
     <div
+      class="ContentView__imagetWrapper"
+    >
+      <img
+        alt="Delta Lake table"
+        height="120"
+        src="/delta.png"
+        width="120"
+      />
+    </div>
+    <div
       class="ContentView__contentWrapper"
     >
       <div>
@@ -62,16 +72,6 @@ exports[`Render DeltaLake Content 1`] = `
           /path/to/delta/_delta_log/_last_checkpoint
         </span>
       </div>
-    </div>
-    <div
-      class="ContentView__imagetWrapper"
-    >
-      <img
-        alt="IcebergTable"
-        height="180"
-        src="/delta.png"
-        width="180"
-      />
     </div>
   </div>
 </DocumentFragment>
@@ -83,6 +83,16 @@ exports[`Render DeltaLake Content 2`] = `
     class="ContentView"
   >
     <div
+      class="ContentView__imagetWrapper"
+    >
+      <img
+        alt="Delta Lake table"
+        height="120"
+        src="/delta.png"
+        width="120"
+      />
+    </div>
+    <div
       class="ContentView__contentWrapper"
     >
       <div>
@@ -140,16 +150,6 @@ exports[`Render DeltaLake Content 2`] = `
         </span>
       </div>
     </div>
-    <div
-      class="ContentView__imagetWrapper"
-    >
-      <img
-        alt="IcebergTable"
-        height="180"
-        src="/delta.png"
-        width="180"
-      />
-    </div>
   </div>
 </DocumentFragment>
 `;
@@ -159,6 +159,16 @@ exports[`Render Iceberg Content 1`] = `
   <div
     class="ContentView"
   >
+    <div
+      class="ContentView__imagetWrapper"
+    >
+      <img
+        alt="Iceberg table"
+        height="120"
+        src="/iceberg.png"
+        width="120"
+      />
+    </div>
     <div
       class="ContentView__contentWrapper"
     >
@@ -182,16 +192,6 @@ exports[`Render Iceberg Content 1`] = `
           /path/to/metadata/
         </span>
       </div>
-    </div>
-    <div
-      class="ContentView__imagetWrapper"
-    >
-      <img
-        alt="IcebergTable"
-        height="180"
-        src="/iceberg.png"
-        width="180"
-      />
     </div>
   </div>
 </DocumentFragment>
@@ -203,6 +203,16 @@ exports[`Render Iceberg Content 2`] = `
     class="ContentView"
   >
     <div
+      class="ContentView__imagetWrapper"
+    >
+      <img
+        alt="Iceberg table"
+        height="120"
+        src="/iceberg.png"
+        width="120"
+      />
+    </div>
+    <div
       class="ContentView__contentWrapper"
     >
       <div>
@@ -226,16 +236,6 @@ exports[`Render Iceberg Content 2`] = `
         </span>
       </div>
     </div>
-    <div
-      class="ContentView__imagetWrapper"
-    >
-      <img
-        alt="IcebergTable"
-        height="180"
-        src="/iceberg.png"
-        width="180"
-      />
-    </div>
   </div>
 </DocumentFragment>
 `;
@@ -245,6 +245,16 @@ exports[`Render Iceberg View Content 1`] = `
   <div
     class="ContentView"
   >
+    <div
+      class="ContentView__imagetWrapper"
+    >
+      <img
+        alt="Iceberg view"
+        height="120"
+        src="/iceberg.png"
+        width="120"
+      />
+    </div>
     <div
       class="ContentView__contentWrapper"
     >
@@ -308,16 +318,6 @@ exports[`Render Iceberg View Content 1`] = `
           Hive
         </span>
       </div>
-    </div>
-    <div
-      class="ContentView__imagetWrapper"
-    >
-      <img
-        alt="IcebergTable"
-        height="180"
-        src="/iceberg.png"
-        width="180"
-      />
     </div>
   </div>
 </DocumentFragment>
@@ -329,6 +329,16 @@ exports[`Render Iceberg View Content 2`] = `
     class="ContentView"
   >
     <div
+      class="ContentView__imagetWrapper"
+    >
+      <img
+        alt="Iceberg view"
+        height="120"
+        src="/iceberg.png"
+        width="120"
+      />
+    </div>
+    <div
       class="ContentView__contentWrapper"
     >
       <div>
@@ -391,16 +401,6 @@ exports[`Render Iceberg View Content 2`] = `
           Hive
         </span>
       </div>
-    </div>
-    <div
-      class="ContentView__imagetWrapper"
-    >
-      <img
-        alt="IcebergTable"
-        height="180"
-        src="/iceberg.png"
-        width="180"
-      />
     </div>
   </div>
 </DocumentFragment>
