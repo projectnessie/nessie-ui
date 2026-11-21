@@ -94,7 +94,7 @@
     "@eslint/js": "^10.0.0",
     "@openapitools/openapi-generator-cli": "^2.6.0",
     "@pmmmwh/react-refresh-webpack-plugin": "0.6.3",
-    "@stylistic/eslint-plugin": "^5.10.0",
+    "@stylistic/eslint-plugin": "^6.0.0",
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^7.0.0",
     "@testing-library/react": "^16.3.2",
