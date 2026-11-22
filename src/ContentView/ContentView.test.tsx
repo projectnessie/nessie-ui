@@ -34,12 +34,12 @@ it("Render Iceberg Content", async () => {
     </BrowserRouter>,
   );
   expect(asFragment()).toMatchSnapshot();
-  await waitFor(() => getByAltText("IcebergTable"));
+  await waitFor(() => getByAltText("Iceberg table"));
   setTimeout(() => {
     scope.done();
   }, 5000);
   expect(asFragment()).toMatchSnapshot();
-  expect(screen.getByAltText("IcebergTable")).toHaveAttribute(
+  expect(screen.getByAltText("Iceberg table")).toHaveAttribute(
     "src",
     "/iceberg.png",
   );
@@ -57,12 +57,12 @@ it("Render DeltaLake Content", async () => {
     </BrowserRouter>,
   );
   expect(asFragment()).toMatchSnapshot();
-  await waitFor(() => getByAltText("IcebergTable"));
+  await waitFor(() => getByAltText("Delta Lake table"));
   setTimeout(() => {
     scope.done();
   }, 5000);
   expect(asFragment()).toMatchSnapshot();
-  expect(screen.getByAltText("IcebergTable")).toHaveAttribute(
+  expect(screen.getByAltText("Delta Lake table")).toHaveAttribute(
     "src",
     "/delta.png",
   );
@@ -86,6 +86,10 @@ it("Render Iceberg View Content", async () => {
   }, 5000);
   expect(asFragment()).toMatchSnapshot();
   expect(screen.getByText("ICEBERG_VIEW")).toBeInTheDocument();
+  expect(screen.getByAltText("Iceberg view")).toHaveAttribute(
+    "src",
+    "/iceberg.png",
+  );
 });
 
 const icebergTableContent: Content = {

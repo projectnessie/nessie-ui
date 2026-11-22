@@ -23,9 +23,17 @@
 .ContentView__contentWrapper div {
   padding: 10px;
 }
-.ContentView__imagetWrapper {
-  margin-left: 20px;
-}
 .ContentView__uidContent {
   color: #007bff;
+}
+.ContentView__imagetWrapper {
+  flex: 0 0 180px;
+  height: 180px;
+  align-self: flex-start;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ContentView__imagetWrapper img {
+  object-fit: contain;
 }
